@@ -1,0 +1,46 @@
+<% include ../partials/header %>
+
+<div class = "ui inverted grey vertical masthead center aligned segment">
+     <div class = "ui text container">
+          <br>
+          <h1 class = "ui inverted header">Library App</h1>
+          <div class = "ui horizontal divider"><i class = "circular big inverted grey book icon"></i></div>
+          <h3 class = "ui inverted header">Look below to see my books.</h3>
+          <a href="/books/new"><div class="ui animated button" tabindex="0">
+                 <div class="visible content">Add Book</div>
+                 <div class="hidden content">
+                   <i class="write icon"></i>
+                 </div>
+               </div>
+          </a>
+          <br>
+          <br>
+     </div>
+     
+</div>
+
+<br>
+
+<div class = "ui container"><table class = "ui fixed single line selectable striped padded table">
+     <thead>
+          
+          <tr>
+               <th class = "single line"><h3>Title</h3></th>
+               <th class = "single line"><h3>Author</h3></th>
+               <th class = "single line"><h3>Genre</h3></th>
+          </tr>
+          
+     </thead>
+     <tbody>
+          <% books.forEach(function(book) { %>
+          <a href = "/books/<%= book._id %>"><tr>
+               <td><h4 class = "ui blue header"><%= book.title %></h4></td>
+               <td><h4><%= book.authorFirst + " " + book.authorLast %></h4></td>
+               <td><h4><%= book.genre %></h4></td>
+          </tr></a>
+          <% }); %>
+     </tbody>
+     
+</table></div>
+
+<% include ../partials/footer %>

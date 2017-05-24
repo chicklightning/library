@@ -1,0 +1,59 @@
+<% include ../partials/header %>
+
+<div class = "ui inverted grey vertical masthead center aligned segment">
+     <div class = "ui text container">
+          <br>
+          <h1 class = "ui inverted header">Library App</h1>
+          <div class = "ui horizontal divider"><i class = "circular big inverted grey book icon"></i></div>
+          <h3 class = "ui inverted header">Create a new book.</h3>
+          <a href="/books/"><div class="ui animated button" tabindex="0">
+                 <div class="visible content">Back</div>
+                 <div class="hidden content">
+                   <i class="chevron circle left icon"></i>
+                 </div>
+               </div>
+          </a>
+          <br>
+          <br>
+     </div>
+     
+</div>
+
+<br>
+<div class = "ui container">
+     <form class = "ui large form">
+     
+          <div class = "required field">
+               <label>Title</label>
+               <input type = "text" placeholder = "book title" name = "title" required>
+          </div>
+          
+          <div class = "fields">
+               <div class = "eight wide required field">
+                    <label>Author's First Name</label>
+                    <input type = "text" placeholder = "author first name" name = "first" required>
+               </div>
+               
+               <div class = "eight wide required field">
+                    <label>Author's Last Name</label>
+                    <input type = "text" placeholder = "author last name" name = "last" required>
+               </div>
+          </div>
+          
+          <div class = "three fields">
+               <div class = "field">
+                    <label>ISBN</label>
+                    <input type = "number" placeholder = "10 or 13 digit numerical value" name = "isbn">
+               </div>
+               
+               <div class = "field">
+                    <label>No. in Series<i class="help icon" data-content="Leave blank if not part of a series."></i></label>
+                    <input type = "number" placeholder = "series number" name = num>
+               </div>
+          </div>
+     
+     </form>
+
+</div>
+
+<% include ../partials/footer %>
