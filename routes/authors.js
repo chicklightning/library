@@ -10,7 +10,7 @@ var  express   = require("express"),
 
 
 //SHOW AUTHOR single author info
-router.get("/authors/:id/", function (req, res) {
+router.get("/:id/", function (req, res) {
      
      // find author by id
      Author.findById(req.params.id, function(err, author) {
@@ -20,7 +20,7 @@ router.get("/authors/:id/", function (req, res) {
                res.redirect("/books");
           }
           else {
-               res.render("authors/show", {author: author});
+               res.render("/show", {author: author});
           }
      });
 });

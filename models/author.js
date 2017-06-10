@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+var Book = require("./book.js");
 
 // Author schema
 // each author has a first name, last name, image, and list of associated books

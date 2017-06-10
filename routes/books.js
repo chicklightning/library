@@ -46,7 +46,7 @@ router.post("/", function(req, res) {
                          if(err)
                          {
                               console.log("Error creating author: " + err);
-                              res.redirect("/books");
+                              res.redirect("/");
                          }
                          else {
                               console.log("New author created: " + authorFirst + " " + authorLast);
@@ -74,7 +74,7 @@ router.post("/", function(req, res) {
                     }
                     else {
                          // push book id to author
-                         newAuthor.books.push(book);
+                         newAuthor.books.push(book._id);
                          newAuthor.save();
                          console.log("New book created: " + title + " by " + authorLast);
                          res.redirect("/");
@@ -100,7 +100,7 @@ router.get("/:id/", function (req, res) {
           if(err)
           {
                console.log("Error retrieving book." + req.params.id);
-               res.redirect("/books");
+               res.redirect("/");
           }
           else {
                res.render("books/show", {book: book});

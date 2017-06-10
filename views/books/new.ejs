@@ -21,11 +21,11 @@
 
 <br>
 <div class = "ui container">
-     <form class = "ui large form">
+     <form class = "ui large form" action="/books" method="POST">
      
           <div class = "required field">
                <label>Title</label>
-               <input type = "text" placeholder = "book title" name = "title" required>
+               <input type = "text" placeholder = "book title" name = "title" required autofocus>
           </div>
           
           <div class = "fields">
@@ -40,17 +40,53 @@
                </div>
           </div>
           
-          <div class = "three fields">
-               <div class = "field">
+          <div class = "fields">
+               <div class = "four wide field">
                     <label>ISBN</label>
                     <input type = "number" placeholder = "10 or 13 digit numerical value" name = "isbn">
                </div>
                
-               <div class = "field">
-                    <label>No. in Series<i class="help icon" data-content="Leave blank if not part of a series."></i></label>
-                    <input type = "number" placeholder = "series number" name = num>
+               <div class = "two wide field">
+                    <label>No. in Series<i class="help icon popup" data-content="Leave blank if not part of a series."></i></label>
+                    <input type = "number" placeholder = "series number" name = num pattern="[0-9]{3}">
+               </div>
+               
+               <div class = "six wide required field">
+                    <label>Genre</label>
+                    <div class="ui simple dropdown">
+                         <input type="hidden" name="genre">
+                         <i class="dropdown icon"></i>
+                         <div class="default text">genre</div>
+                         <div class="menu">
+                              <div class="item" data-value="autobio">Autobiography</div>
+                              <div class="item" data-value="bio">Biography</div>
+                              <div class="item" data-value="crime">Crime</div>
+                              <div class="item" data-value="essay">Essay</div>
+                              <div class="item" data-value="fantasy">Fantasy</div>
+                              <div class="item" data-value="folklore">Folklore</div>
+                              <div class="item" data-value="historical">Historical Fiction</div>
+                              <div class="item" data-value="horror">Horror</div>
+                              <div class="item" data-value="humor">Humor</div>
+                              <div class="item" data-value="magical realism">Magical Realism</div>
+                              <div class="item" data-value="manual">Manual</div>
+                              <div class="item" data-value="memoir">Memoir</div>
+                              <div class="item" data-value="meta">Meta fiction</div>
+                              <div class="item" data-value="mystery">Mystery</div>
+                              <div class="item" data-value="mythology">Mythology</div>
+                              <div class="item" data-value="narrative">Narrative Nonfiction</div>
+                              <div class="item" data-value="realistic">Realistic Fiction</div>
+                              <div class="item" data-value="reference">Reference Book</div>
+                              <div class="item" data-value="self help">Self-Help Book</div>
+                              <div class="item" data-value="short">Short Story</div>
+                              <div class="item" data-value="thriller">Suspense/Thriller</div>
+                              <div class="item" data-value="textbook">Textbook</div>
+                              <div class="item" data-value="western">Western</div>
+                         </div>
+                    </div>
                </div>
           </div>
+          
+          <button class="ui green button" type="submit">Submit</button>
      
      </form>
 

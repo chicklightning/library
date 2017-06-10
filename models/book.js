@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+var Author = require("./author.js");
 
 // Book schema
 // each book has a title, author first and last name, image, isbn, book number in series
