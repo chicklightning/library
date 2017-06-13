@@ -8,8 +8,11 @@ var bookSchema = new mongoose.Schema({
 
     title: String,
     author: {
+        id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Author"
+        },
+        name: String
     },
     image: {
         type: String,
@@ -18,7 +21,6 @@ var bookSchema = new mongoose.Schema({
     isbn: String,
     seriesNum: Number,
     genre: String,
-    read: Boolean
 
 });
 

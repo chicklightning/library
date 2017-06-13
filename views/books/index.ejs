@@ -33,11 +33,11 @@
      </thead>
      <tbody>
           <% books.forEach(function(book) { %>
-          <a href = "/books/<%= book._id %>"><tr>
-               <td><h4 class = "ui blue header"><%= book.title %></h4></td>
-               <td><h4><%= Author.findById(book.authorId) + " " + book.authorLast %></h4></td>
+          <tr>
+               <td><a href = "/books/<%= book._id %>"><h4 class = "ui blue header"><%= book.title %></h4></a></td>
+               <td><h4><%= book.author.name %></h4></td>
                <td><h4><%= book.genre %></h4></td>
-          </tr></a>
+          </tr>
           <% }); %>
      </tbody>
      

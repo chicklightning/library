@@ -1,0 +1,69 @@
+<% include ../partials/header %>
+
+<div class = "ui inverted grey vertical masthead center aligned segment">
+     <div class = "ui text container">
+          <br>
+          <h1 class = "ui inverted header">Library App</h1>
+          <div class = "ui horizontal divider"><i class = "circular big inverted grey book icon"></i></div>
+          <h3 class = "ui inverted header">Learn a little about this book.</h3>
+          <a href="/books/new"><div class="ui animated button" tabindex="0">
+                 <div class="visible content">Back</div>
+                 <div class="hidden content">
+                   <i class="chevron circle left icon"></i>
+                 </div>
+               </div>
+          </a>
+          <br>
+          <br>
+     </div>
+     
+</div>
+
+<div class = "ui container segment">
+    <br>
+    <img class = "ui centered medium image" src="<%= book.image %>">
+    <br>
+    <h2 class = "ui center aligned dividing header">
+        <%= book.title %> 
+    </h2>
+    <h4 class = "ui grey center aligned header">
+        <%= book.author.name %>
+    </h4>
+    
+    <div class="ui list">
+      <div class="item">
+        <i class="hashtag icon"></i>
+        <div class="content">
+          <a class="header">Krolewskie Jadlo</a>
+          <div class="description">An excellent polish restaurant, quick delivery and hearty, filling meals.</div>
+        </div>
+      </div>
+      <div class="item">
+        <i class="map marker icon"></i>
+        <div class="content">
+          <a class="header">Xian Famous Foods</a>
+          <div class="description">A taste of Shaanxi's delicious culinary traditions, with delights like spicy cold noodles and lamb burgers.</div>
+        </div>
+      </div>
+      <div class="item">
+        <i class="map marker icon"></i>
+        <div class="content">
+          <a class="header">Sapporo Haru</a>
+          <div class="description">Greenpoint's best choice for quick and delicious sushi.</div>
+        </div>
+      </div>
+      <div class="item">
+        <i class="map marker icon"></i>
+        <div class="content">
+          <a class="header">Enid's</a>
+          <div class="description">At night a bar, during the day a delicious brunch spot.</div>
+        </div>
+      </div>
+    </div>
+    
+    <br>
+</div>
+
+
+
+<% include ../partials/footer %>

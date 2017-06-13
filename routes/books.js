@@ -31,38 +31,49 @@ router.post("/", function(req, res) {
           read           = req.body.read;
      
      // search for author in database
-     Author.findOne({authorLast: authorLast, authorFirst: authorFirst}, function (err, author) {
+     Author.findOne({authorLast: authorLast, authorFirst: authorFirst}, function (err, foundAuthor) {
+          
           if(err) {
                console.log(err);
                res.redirect("/");
           }
           else {
-               var newAuthor = author;
+               
                // if there is no such match, then create a new author
-               if(author == null)
+               if(foundAuthor == null)
                {
-                    newAuthor = {authorLast: authorLast, authorFirst: authorFirst };
-                    Author.create(newAuthor, function(err, book) {
+                    var newAuthor = {authorLast: authorLast, authorFirst: authorFirst };
+                    Author.create(newAuthor, function(err, author) {
                          if(err)
                          {
                               console.log("Error creating author: " + err);
                               res.redirect("/");
                          }
                          else {
-                              console.log("New author created: " + authorFirst + " " + authorLast);
+                              foundAuthor = author;
                          }
                     });
                }
                
+               // // isbn filtering - remove dashes ("-") from string
+               // if (isbn.indexOf('-') > -1) {
+               //      isbn = isbn.replace('-', '');
+               // }
+               
+               // wait for database to fully process query
+               while(foundAuthor == null) {
+                    setTimeout(function(){}, 100);    
+               }
+               
+               console.log("New author created: " + foundAuthor.authorFirst + " " + foundAuthor.authorLast);
+               
                // create a book using the found or created author
                var newBook = {
-               title: title,
-               authorId: newAuthor._id,
-               image: image,
-               isbn: isbn,
-               seriesNum: seriesNum,
-               genre: genre,
-               read: read
+                    title: title,
+                    image: image,
+                    isbn: isbn,
+                    seriesNum: seriesNum,
+                    genre: genre,
                };
                
                // add book to database then redirect to book list
@@ -70,14 +81,19 @@ router.post("/", function(req, res) {
                     if(err)
                     {
                          console.log("Error creating book: " + err);
-                         res.redirect("/");
+                         res.redirect("/books");
                     }
                     else {
+                         
+                         book.author.id = foundAuthor._id;
+                         book.author.name = authorFirst + " " + authorLast;
+                         book.save();
+                         
                          // push book id to author
-                         newAuthor.books.push(book._id);
-                         newAuthor.save();
+                         foundAuthor.books.push(book);
+                         foundAuthor.save();
                          console.log("New book created: " + title + " by " + authorLast);
-                         res.redirect("/");
+                         res.redirect("/books");
                     }
                });
           }
@@ -100,7 +116,7 @@ router.get("/:id/", function (req, res) {
           if(err)
           {
                console.log("Error retrieving book." + req.params.id);
-               res.redirect("/");
+               res.redirect("/books");
           }
           else {
                res.render("books/show", {book: book});
