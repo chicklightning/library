@@ -125,5 +125,44 @@ router.get("/:id/", function (req, res) {
 });
 
 
+//EDIT BOOK singular
+router.get("/:id/edit", function(req, res) {
+     Book.findById(req.params.id, function(err, book) {
+        res.render("books/edit", {book: book});  
+     });
+});
+
+
+//UPDATE BOOK singular
+router.put("/:id", function(req, res) {
+     // get book from form and replace items
+     Book.findByIdAndUpdate(req.params.id, req.body.book, function (err, updatedBook) {
+        if(err) {
+             console.log("Unable to update book: " + req.body.book.title);
+             res.redirect("/books");
+        }
+        else {
+             // redirect to book page
+             res.redirect("/books/" + req.params.id);
+        }
+     });
+})
+
+
+// DELETE BOOK singular book
+router.delete("/:id", function(req, res) {
+     Book.findByIdAndRemove(req.params.id, function(err) {
+        if(err) {
+             console.log("Failed to delete book.");
+        }
+        else {
+             // SAY WHICH BOOK LATER
+             console.log("Successfully deleted book.");
+        }
+        res.redirect("/books");
+     });
+});
+
+
 // export
 module.exports = router;

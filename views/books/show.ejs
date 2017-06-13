@@ -6,7 +6,7 @@
           <h1 class = "ui inverted header">Library App</h1>
           <div class = "ui horizontal divider"><i class = "circular big inverted grey book icon"></i></div>
           <h3 class = "ui inverted header">Learn a little about this book.</h3>
-          <a href="/books/new"><div class="ui animated button" tabindex="0">
+          <a href="/books"><div class="ui animated button" tabindex="0">
                  <div class="visible content">Back</div>
                  <div class="hidden content">
                    <i class="chevron circle left icon"></i>
@@ -34,34 +34,44 @@
       <div class="item">
         <i class="hashtag icon"></i>
         <div class="content">
-          <a class="header">Krolewskie Jadlo</a>
-          <div class="description">An excellent polish restaurant, quick delivery and hearty, filling meals.</div>
+          <a class="header">ISBN</a>
+          <div class="description"><%= book.isbn %></div>
         </div>
       </div>
       <div class="item">
-        <i class="map marker icon"></i>
+        <i class="tags icon"></i>
         <div class="content">
-          <a class="header">Xian Famous Foods</a>
-          <div class="description">A taste of Shaanxi's delicious culinary traditions, with delights like spicy cold noodles and lamb burgers.</div>
+          <a class="header">Genre</a>
+          <div class="description"><%= book.genre %></div>
         </div>
       </div>
+      <% if (book.seriesNum !== null) { %>
+          <div class="item">
+            <i class="sort numeric ascending icon"></i>
+            <div class="content">
+              <a class="header">Number in Series</a>
+              <div class="description"><%= book.seriesNum %></div>
+            </div>
+          </div>
+        <% } %>
       <div class="item">
-        <i class="map marker icon"></i>
+        <i class="search icon"></i>
         <div class="content">
-          <a class="header">Sapporo Haru</a>
-          <div class="description">Greenpoint's best choice for quick and delicious sushi.</div>
-        </div>
-      </div>
-      <div class="item">
-        <i class="map marker icon"></i>
-        <div class="content">
-          <a class="header">Enid's</a>
-          <div class="description">At night a bar, during the day a delicious brunch spot.</div>
+          <a class="header" href = "https://isbnsearch.org/isbn/<%= book.isbn.replace('-', '') %>">Find Online</a>
+          <div class="description">Search for this book online.</div>
         </div>
       </div>
     </div>
-    
-    <br>
+    <div class = "ui basic center aligned segment">
+        <div class = "ui buttons">
+          <a href = "/books/<%= book._id %>/edit">
+            <button class = "ui button">Edit</button>
+          </a>
+          <form style="display: inline;" action="/books/<%= book._id %>?_method=DELETE" method = "POST">
+            <button class = "ui negative button">Delete</button>
+          </form>
+        </div>
+    </div>
 </div>
 
 
